@@ -47,7 +47,7 @@ function ArchiveListCard() {
         [aitems],
     );
 
-    if (items === null) return 'Loading...';
+    if (aitems === null) return 'Loading...';
 
     return (
         <React.Fragment>
