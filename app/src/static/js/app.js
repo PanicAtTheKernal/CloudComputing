@@ -36,7 +36,7 @@ function ArchiveListCard() {
                 ...items.slice(index + 1),
             ]);
         },
-        [aitems],
+        [items],
     );
 
     const onItemRemoval = React.useCallback(
@@ -53,10 +53,10 @@ function ArchiveListCard() {
         <React.Fragment>
             <TodoListCard onArchiveItem={onNewItem}/>
             <h1 className="text-center">Archived Cards</h1>
-            {aitems.length === 0 && (
+            {items.length === 0 && (
                 <p className="text-center litext">You have no archived cards. Delete on to archive it</p>
             )}
-            {aitems.map(item => (
+            {items.map(item => (
                 <ItemDisplay
                     item={item}
                     key={item.id}
