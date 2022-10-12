@@ -12,6 +12,63 @@ function App() {
 }
 
 function ArchiveListCard() {
+    const [aitems, setAItems] = React.useState(null);
+
+    React.useEffect(() => {
+        fetch('/items')
+            .then(r => r.json())
+            .then(setAItems);
+    }, []);
+
+    const onNewItem = React.useCallback(
+        newItem => {
+            setAItems([...aitems, newItem]);
+        },
+        [aitems],
+    );
+
+    const onItemUpdate = React.useCallback(
+        item => {
+            const index = aitems.findIndex(i => i.id === item.id);
+            setAItems([
+                ...aitems.slice(0, index),
+                item,
+                ...aitems.slice(index + 1),
+            ]);
+        },
+        [aitems],
+    );
+
+    const onItemRemoval = React.useCallback(
+        item => {
+            const index = aitems.findIndex(i => i.id === item.id);
+            setAItems([...aitems.slice(0, index), ...aitems.slice(index + 1)]);
+        },
+        [aitems],
+    );
+
+    if (aitems === null) return 'Loading...';
+
+    return (
+        <React.Fragment>
+            <TodoListCard onArchiveItem={onNewItem}/>
+            <h1 className="text-center">Archived Cards</h1>
+            {aitems.length === 0 && (
+                <p className="text-center litext">You have no archived cards. Delete on to archive it</p>
+            )}
+            {aitems.map(item => (
+                <ItemDisplay
+                    item={item}
+                    key={item.id}
+                    onItemUpdate={onItemUpdate}
+                    onItemRemoval={onItemRemoval}
+                />
+            ))}
+        </React.Fragment>
+    );
+}
+
+function TodoListCard({ onArchiveItem }) {
     const [items, setItems] = React.useState(null);
 
     React.useEffect(() => {
@@ -43,69 +100,12 @@ function ArchiveListCard() {
         item => {
             const index = items.findIndex(i => i.id === item.id);
             setItems([...items.slice(0, index), ...items.slice(index + 1)]);
+            onArchiveItem(item);
         },
         [items],
     );
 
     if (items === null) return 'Loading...';
-
-    return (
-        <React.Fragment>
-            <TodoListCard onArchiveItem={onNewItem}/>
-            <h1 className="text-center">Archived Cards</h1>
-            {items.length === 0 && (
-                <p className="text-center litext">You have no archived cards. Delete on to archive it</p>
-            )}
-            {items.map(item => (
-                <ItemDisplay
-                    item={item}
-                    key={item.id}
-                    onItemUpdate={onItemUpdate}
-                    onItemRemoval={onItemRemoval}
-                />
-            ))}
-        </React.Fragment>
-    );
-}
-
-function TodoListCard({ onArchiveItem }) {
-    const [aitems, setAItems] = React.useState(null);
-
-    React.useEffect(() => {
-        fetch('/items')
-            .then(r => r.json())
-            .then(setAItems);
-    }, []);
-
-    const onNewItem = React.useCallback(
-        newItem => {
-            setAItems([...aitems, newItem]);
-        },
-        [aitems],
-    );
-
-    const onItemUpdate = React.useCallback(
-        item => {
-            const index = items.findIndex(i => i.id === item.id);
-            setAItems([
-                ...aitems.slice(0, index),
-                item,
-                ...aitems.slice(index + 1),
-            ]);
-        },
-        [aitems],
-    );
-
-    const onItemRemoval = React.useCallback(
-        item => {
-            const index = aitems.findIndex(i => i.id === item.id);
-            setAItems([...aitems.slice(0, index), ...aitems.slice(index + 1)]);
-            onArchiveItem(item);
-        },
-        [aitems],
-    );
-
-    if (aitems === null) return 'Loading...';
 
     return (
         <React.Fragment>
