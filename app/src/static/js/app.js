@@ -15,9 +15,7 @@ function ArchiveListCard() {
     const [aitems, setAItems] = React.useState(null);
 
     React.useEffect(() => {
-        // fetch('/items')
-        //     .then(r => r.json())
-        //     .then(setAItems);
+        setAItems = [];
     }, []);
 
     const onNewItem = React.useCallback(
@@ -50,9 +48,9 @@ function ArchiveListCard() {
     return (
         <React.Fragment>
             <TodoListCard onArchiveItem={onNewItem}/>
-            <h1 className="text-center">Archived Cards</h1>
+            <h1 className="text-center">Bin</h1>
             {aitems.length === 0 && (
-                <p className="text-center litext">You have no archived cards. Delete on to archive it</p>
+                <p className="text-center litext">These cards will be deleted when the app refreshes</p>
             )}
             {aitems.map(item => (
                 <ItemDisplay
