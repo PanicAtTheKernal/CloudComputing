@@ -47,6 +47,8 @@ function ArchiveListCard() {
         [aitems],
     );
 
+    if (items === null) return 'Loading...';
+
     return (
         <React.Fragment>
             <TodoListCard onArchiveItem={onNewItem}/>
