@@ -15,7 +15,7 @@ function ArchiveListCard() {
     const [aitems, setAItems] = React.useState(null);
 
     React.useEffect(() => {
-        setAItems(aitems = []);
+        setAItems([]);
     }, []);
 
     const onNewItem = React.useCallback(
