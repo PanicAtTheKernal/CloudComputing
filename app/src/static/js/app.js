@@ -69,43 +69,43 @@ function ArchiveListCard() {
 }
 
 function TodoListCard({ onArchiveItem }) {
-    const [items, setItems] = React.useState(null);
+    const [aitems, setAItems] = React.useState(null);
 
     React.useEffect(() => {
         fetch('/items')
             .then(r => r.json())
-            .then(setItems);
+            .then(setAItems);
     }, []);
 
     const onNewItem = React.useCallback(
         newItem => {
-            setItems([...items, newItem]);
+            setAItems([...aitems, newItem]);
         },
-        [items],
+        [aitems],
     );
 
     const onItemUpdate = React.useCallback(
         item => {
             const index = items.findIndex(i => i.id === item.id);
-            setItems([
-                ...items.slice(0, index),
+            setAItems([
+                ...aitems.slice(0, index),
                 item,
-                ...items.slice(index + 1),
+                ...aitems.slice(index + 1),
             ]);
         },
-        [items],
+        [aitems],
     );
 
     const onItemRemoval = React.useCallback(
         item => {
-            const index = items.findIndex(i => i.id === item.id);
-            setItems([...items.slice(0, index), ...items.slice(index + 1)]);
+            const index = aitems.findIndex(i => i.id === item.id);
+            setAItems([...aitems.slice(0, index), ...aitems.slice(index + 1)]);
             onArchiveItem(item);
         },
-        [items],
+        [aitems],
     );
 
-    if (items === null) return 'Loading...';
+    if (aitems === null) return 'Loading...';
 
     return (
         <React.Fragment>
