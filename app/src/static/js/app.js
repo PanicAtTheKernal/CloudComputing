@@ -12,28 +12,28 @@ function App() {
 }
 
 function ArchiveListCard() {
-    const [aitems, setAItems] = React.useState(null);
+    const [items, setItems] = React.useState(null);
 
     React.useEffect(() => {
         fetch('/items')
             .then(r => r.json())
-            .then(setAItems);
+            .then(setItems);
     }, []);
 
     const onNewItem = React.useCallback(
         newItem => {
-            setItems([...aitems, newItem]);
+            setItems([...items, newItem]);
         },
-        [aitems],
+        [items],
     );
 
     const onItemUpdate = React.useCallback(
         item => {
-            const index = aitems.findIndex(i => i.id === item.id);
+            const index = items.findIndex(i => i.id === item.id);
             setItems([
-                ...aitems.slice(0, index),
+                ...items.slice(0, index),
                 item,
-                ...aitems.slice(index + 1),
+                ...items.slice(index + 1),
             ]);
         },
         [aitems],
@@ -41,13 +41,13 @@ function ArchiveListCard() {
 
     const onItemRemoval = React.useCallback(
         item => {
-            const index = aitems.findIndex(i => i.id === item.id);
-            setItems([...aitems.slice(0, index), ...aitems.slice(index + 1)]);
+            const index = items.findIndex(i => i.id === item.id);
+            setItems([...items.slice(0, index), ...items.slice(index + 1)]);
         },
-        [aitems],
+        [items],
     );
 
-    if (aitems === null) return 'Loading...';
+    if (items === null) return 'Loading...';
 
     return (
         <React.Fragment>
