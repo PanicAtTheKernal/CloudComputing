@@ -14,11 +14,11 @@ function App() {
 function ArchiveListCard() {
     const [aitems, setAItems] = React.useState(null);
 
-    // React.useEffect(() => {
-    //     fetch('/items')
-    //         .then(r => r.json())
-    //         .then(setAItems);
-    // }, []);
+    React.useEffect(() => {
+        // fetch('/items')
+        //     .then(r => r.json())
+        //     .then(setAItems);
+    }, []);
 
     const onNewItem = React.useCallback(
         newItem => {
