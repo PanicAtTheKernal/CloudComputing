@@ -1,5 +1,6 @@
 body {
-    background-color: #d3cba0;
+    background: rgb(188,125,0);
+    background: radial-gradient(circle, rgba(188,125,0,1) 38%, rgba(255,246,0,1) 46%, rgba(2,0,36,1) 100%); 
     margin-top: 50px;
     font-family: 'Lato';
 }
