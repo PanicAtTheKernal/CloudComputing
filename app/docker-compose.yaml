@@ -21,7 +21,7 @@ services:
     command: sh -c "yarn install && yarn run dev"
     ports:
       - 8080:3000
-    working_dir: /app
+    working_dir: /app2
     volumes:
         - ./:/app
     environment:
