@@ -1,4 +1,4 @@
-pfunction App() {
+function App() {
     const { Container, Row, Col } = ReactBootstrap;
     return (
         <Container>
@@ -195,7 +195,7 @@ function AddItemForm({ onNewItem }) {
     };
 
     return (
-        <Form onSubmit={submitNewItem}>
+        <Form onSubmit={(process.env.READONLY) ?  () => {}: submitNewItem}>
             <InputGroup className="mb-3">
                 <Form.Control
                     value={newItem}
@@ -278,7 +278,7 @@ function ItemDisplay({ item, onItemUpdate, onItemRemoval, playAnimation=false })
                     <Button
                         size="sm"
                         variant="link"
-                        onClick={removeItem}
+                        onClick={(process.env.READONLY) ?  () => {}: removeItem}
                         aria-label="Remove Item"
                     >
                         <i className="fa fa-trash text-danger" />
