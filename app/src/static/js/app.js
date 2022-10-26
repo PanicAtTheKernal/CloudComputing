@@ -1,4 +1,4 @@
-function App() {
+pfunction App() {
     const { Container, Row, Col } = ReactBootstrap;
     return (
         <Container>

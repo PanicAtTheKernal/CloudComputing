@@ -10,6 +10,22 @@ services:
     volumes:
       - ./:/app
     environment:
+      READONLY: false
+      MYSQL_HOST: mysql
+      MYSQL_USER: root
+      MYSQL_PASSWORD: secret
+      MYSQL_DB: todos
+
+  app2:
+    image: node:12-alpine
+    command: sh -c "yarn install && yarn run dev"
+    ports:
+      - 8080:3000
+    working_dir: /app
+    volumes:
+        - ./:/app
+    environment:
+      READONLY: true
       MYSQL_HOST: mysql
       MYSQL_USER: root
       MYSQL_PASSWORD: secret
