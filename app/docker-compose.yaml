@@ -23,7 +23,7 @@ services:
       - 8080:3000
     working_dir: /app2
     volumes:
-        - ./:/app
+        - ./../app2:/app2
     environment:
       READONLY: true
       MYSQL_HOST: mysql
