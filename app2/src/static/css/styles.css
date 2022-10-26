@@ -1,0 +1,88 @@
+body {
+    background: rgb(238,174,202);
+    background: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);
+    margin-top: 50px;
+    font-family: 'Lato';
+}
+
+@keyframes achiveItemCreate {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+    
+  }
+
+@keyframes itemCreate {
+    0% {
+      animation-timing-function: ease-in;opacity: 1;transform: translateY(-45px);
+    }
+    24% {
+      opacity: 1;
+    }
+    40% {
+      animation-timing-function: ease-in;transform: translateY(-24px);
+    }
+    65% {
+      animation-timing-function: ease-in;transform: translateY(-12px);
+    }
+    82% {
+      animation-timing-function: ease-in;transform: translateY(-6px);
+    }
+    93% {
+      animation-timing-function: ease-in;transform: translateY(-4px);
+    }
+    25%,55%,75%,87% {
+      animation-timing-function: ease-out;transform: translateY(0px);
+    }
+    100% {
+      animation-timing-function: ease-out;opacity: 1;transform: translateY(0px);
+    }
+    
+  }
+
+.itemCreateAnimation {
+    animation: itemCreate 3s ease-in infinite normal forwards;
+}
+
+.achiveItemCreateAnimation {
+    animation: achiveItemCreate 1s ease-in 0s infinite alternate forwards;
+}
+
+.item {
+    background-color: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: transparent;
+    border-radius: 5px;
+    box-shadow: 0 0 1em #ccc;
+}
+
+.item:hover {
+    box-shadow: 0 0 1em #aaa;
+}
+
+.item.completed {
+    text-decoration: line-through;
+}
+
+.toggles {
+    color: black;
+}
+
+.name {
+    padding-top: 3px;
+}
+
+.remove {
+    padding-left: 0;
+}
+
+button:focus {
+    border: 1px solid #333;
+}
