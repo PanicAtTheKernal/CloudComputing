@@ -116,6 +116,8 @@ async function createNetworkInterface(name) {
   }
   
   
-  createPublicIPAddressAllocationMethod('test-ip').catch(console.error);
-  createNetworkInterface("test-nic").catch(console.error);
-  createACustomImageVMFromAnUnmanagedGeneralizedOSImage('test-vm').catch(console.error);
+  createPublicIPAddressAllocationMethod('test-ip').then( () => {
+    createNetworkInterface("test-nic").then(() => {
+      createACustomImageVMFromAnUnmanagedGeneralizedOSImage('test-vm').catch(console.error);
+    }).catch(console.error);
+  }).catch(console.error);
